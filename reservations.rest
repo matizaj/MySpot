@@ -1,0 +1,43 @@
+@url = http://localhost:5000/api
+@id = 1
+@parkingSpotId = 00000000-0000-0000-0000-000000000001
+
+###
+GET {{url}}
+
+###
+GET {{url}}/reservations
+
+###
+GET {{url}}/reservations/{{id}}
+
+###
+POST {{url}}/reservations
+Content-Type: application/json
+
+{
+   "ParkingSpotId":"{{parkingSpotId}}",
+   "EmployeeName":"mateusz",
+   "LicensePlate":"KR8EP3",
+   "Date":"2023-06-30"
+}
+###
+POST {{url}}/reservations
+Content-Type: application/json
+
+{
+   "ParkingSpotName":"P1",
+   "EmployeeName":"mateusz",
+   "LicensePlate":"KR8EP3"
+}
+
+###
+PUT  {{url}}/reservations/{{id}}
+Content-Type: application/json
+
+{
+   "LicensePlate":"KR8EP35"
+}
+
+###
+DELETE   {{url}}/reservations/{{id}}
