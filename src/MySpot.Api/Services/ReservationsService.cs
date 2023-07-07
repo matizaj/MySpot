@@ -1,46 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using MySpot.Api.NewFolder;
+using MySpot.Api.Entities;
 
 namespace MySpot.Api.Services
 {
     public class ReservationsService
     {
-        private static readonly List<Reservation> _reservations = new();
-        private static int _id = 1;
-        private static readonly List<string> _parkingSpotName = new() { "P1", "P2", "P3", "P4", "P5" };
+        private static readonly List<WeeklyParkingSpot> _weeklyParkingSpots = new() 
+        { 
+            new WeeklyParkingSpot(Guid.NewGuid(), DateTime.UtcNow.Date, DateTime.UtcNow.AddDays(7),"P1"),
+            new WeeklyParkingSpot(Guid.NewGuid(), DateTime.UtcNow.Date, DateTime.UtcNow.AddDays(7),"P2"),
+            new WeeklyParkingSpot(Guid.NewGuid(), DateTime.UtcNow.Date, DateTime.UtcNow.AddDays(7),"P3"),
+            new WeeklyParkingSpot(Guid.NewGuid(), DateTime.UtcNow.Date, DateTime.UtcNow.AddDays(7),"P4"),
+            new WeeklyParkingSpot(Guid.NewGuid(), DateTime.UtcNow.Date, DateTime.UtcNow.AddDays(7),"P5"),
+        };
 
-        public Reservation Get(int id)=> _reservations.SingleOrDefault(x => x.Id == id);
+        public Reservation Get(Guid id)=> GetAllWeekly().SingleOrDefault(x => x.Id == id);
           
-        public IEnumerable<Reservation> GetAll() => _reservations;
+        public IEnumerable<Reservation> GetAllWeekly() => _weeklyParkingSpots.SelectMany(x => x.Reservations);
 
-        public int? Create(Reservation reservation)
+        public Guid? Create(Reservation reservation)
         {
-            if (_parkingSpotName.All(x => x != reservation.ParkingSpotName))
+            var weeklyParkingSpot = _weeklyParkingSpots.SingleOrDefault(x=>x.Id == reservation.ParkingSpotId);
+            if(weeklyParkingSpot == null)
             {
-                return null;
-            }
-            reservation.Date = DateTime.UtcNow.AddDays(1).Date;
-
-            var reservationAlreadyExist = _reservations.Any(x =>
-                x.ParkingSpotName == reservation.ParkingSpotName &&
-                x.Date.Date == reservation.Date.Date);
-
-            if (reservationAlreadyExist)
-            {
-                return null;
+                return default;
             }
 
-            reservation.Id = _id;
-
-            _id++;
-            _reservations.Add(reservation);
-            return reservation.Id;
+            weeklyParkingSpot.AddReservation(reservation);
+            reservation.
         }
 
         public bool Update(int id, Reservation reservation)
         {
-            var existingReservation = _reservations.SingleOrDefault(x => x.Id == id);
+            var existingReservation = _reservations.SingleOrDefault(x => x.Id == reservation.ParkingSpotId);
             if (existingReservation == null)
+            {
+                return false;
+            }
+
+            if(existingReservation.Date <= DateTime.UtcNow.Date)
             {
                 return false;
             }
