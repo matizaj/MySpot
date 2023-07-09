@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MySpot.Api.NewFolder;
+using MySpot.Api.Commands;
+using MySpot.Api.Entities;
 using MySpot.Api.Services;
 
 namespace MySpot.Api.Controllers
@@ -8,25 +9,26 @@ namespace MySpot.Api.Controllers
     [Route("/api/[controller]")]
     public class ReservationsController: ControllerBase 
     {
-        //controller can hold any state, every request start from new state so static keyword need to be added
+        //controller cant hold any state, every request start from new state so static keyword need to be added
         private readonly ReservationsService _service = new ReservationsService();
 
         [HttpPost]
-        public IActionResult Post(Reservation reservation)
+        public IActionResult Post(CreateReservation command)
         {
-           var id = _service.Create(reservation);
+           var cmd = command with { ReservationId = Guid.NewGuid() };
+           var id = _service.Create(cmd);
             if(id == null)
             {
                 return BadRequest();
             }
-           return CreatedAtAction(nameof(Get), new {id = reservation.Id}, reservation);
+           return CreatedAtAction(nameof(Get), new {id = cmd.ReservationId}, cmd);
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Reservation>> Get() => Ok(_service.GetAll());
+        public ActionResult<IEnumerable<Reservation>> Get() => Ok(_service.GetAllWeekly());
 
-        [HttpGet("{id:int}")]
-        public ActionResult<Reservation> Get(int id)
+        [HttpGet("{id:guid}")]
+        public ActionResult<Reservation> Get(Guid id)
         {
             var reservation = _service.Get(id);
             if(reservation == null)
@@ -37,10 +39,10 @@ namespace MySpot.Api.Controllers
             return Ok(reservation);
         }
 
-        [HttpPut("{id:int}")]
-        public ActionResult Put(int id, Reservation reservation)
+        [HttpPut("{id:guid}")]
+        public ActionResult Put(Guid id, ChangeReservationLicensePlate command)
         {
-            if(_service.Update(id, reservation))
+            if(_service.Update(command with { ReservationId = id}))
             {
                 return NoContent();
             }
@@ -48,10 +50,10 @@ namespace MySpot.Api.Controllers
             
         }
 
-        [HttpDelete("{id:int}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{id:guid}")]
+        public IActionResult Delete(Guid id)
         {
-           if (_service.Delete(id))
+           if (_service.Delete(new DeleteReservation(id)))
            {
                 return NoContent();
            }

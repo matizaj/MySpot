@@ -42,5 +42,11 @@ namespace MySpot.Api.Entities
             _reservations.Add(reservation);
         }
 
+        public void RemoveReservation(Guid id)
+        {
+            var reservation = _reservations.SingleOrDefault(x => x.Id == id);
+            _reservations.Remove(reservation);
+        }
+
     }
 }
