@@ -1,4 +1,5 @@
 ﻿using MySpot.Api.Exceptions;
+using MySpot.Api.ValueObjects;
 
 namespace MySpot.Api.Entities
 {
@@ -6,37 +7,35 @@ namespace MySpot.Api.Entities
     {
         private readonly HashSet<Reservation> _reservations = new();
 
-        public WeeklyParkingSpot(Guid id, DateTime from, DateTime to, string name)
+        public WeeklyParkingSpot(ParkingSpotId id, Week week, ParkingSpotName name)
         {
             Id = id;
-            From = from;
-            To = to;
+            Week = week;
             Name = name;
         }
 
         public Guid Id { get; }
-        public DateTime From { get; }
-        public DateTime To { get; }
-        public string Name { get; set; }
+        public Week Week { get; }
+        public ParkingSpotName Name { get; set; }
         public IEnumerable<Reservation> Reservations => _reservations;
 
-        public void AddReservation(Reservation reservation)
+        public void AddReservation(Reservation reservation, Date now)
         {
-            var isInvalidDate = reservation.Date.Date < From.Date ||
-                                reservation.Date.Date > To.Date ||
-                                reservation.Date.Date < DateTime.UtcNow.Date;
+            var isInvalidDate = reservation.Date < Week.From ||
+                                reservation.Date > Week.To ||
+                                reservation.Date < now;
 
             if (isInvalidDate)
             {
-                throw new InvalidReservationDateException(reservation.Date);
+                throw new InvalidReservationDateException(reservation.Date.Value.Date);
             }
 
             var reservationAlreadyExist = _reservations.Any(x =>
-                x.Date.Date == reservation.Date.Date);
+                x.Date == reservation.Date);
 
             if (reservationAlreadyExist)
             {
-                throw new ParkingSpotAlreadyReservedException(Name, reservation.Date);
+                throw new ParkingSpotAlreadyReservedException(Name, reservation.Date.Value.Date);
             }
 
             _reservations.Add(reservation);

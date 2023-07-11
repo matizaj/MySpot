@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
-using MySpot.Api.Exceptions;
+﻿using MySpot.Api.ValueObjects;
 
 namespace MySpot.Api.Entities
 {
     public class Reservation
     {
-        public Reservation(Guid id, Guid parkingSpotId, string employeeName, string licensePlate, DateTime date)
+        public Reservation(ReservationId id, ParkingSpotId parkingSpotId, EmployeeName employeeName, LicensePlate licensePlate, Date date)
         {
             Id = id;
             ParkingSpotId = parkingSpotId;
@@ -17,15 +16,11 @@ namespace MySpot.Api.Entities
         public Guid Id { get; }
         public string EmployeeName { get; private set; }
         public Guid ParkingSpotId { get; private set; }
-        public string LicensePlate { get; private set; }
-        public DateTime Date { get; private set; }
+        public LicensePlate LicensePlate { get; private set; }
+        public Date Date { get; private set; }
 
-        public void ChangeLicensePlate(string licensePlate)
-        {
-            if(string.IsNullOrEmpty(licensePlate))
-            {
-                throw new EmptyLicensePlateException();
-            }
+        public void ChangeLicensePlate(LicensePlate licensePlate)
+        {    
             LicensePlate = licensePlate;
         }
 
