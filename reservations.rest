@@ -19,7 +19,7 @@ Content-Type: application/json
    "ParkingSpotId":"{{parkingSpotId}}",
    "EmployeeName":"mateusz",
    "LicensePlate":"KR8EP3",
-   "Date":"2023-07-13"
+   "Date":"2023-07-14"
 }
 ###
 POST {{url}}/reservations

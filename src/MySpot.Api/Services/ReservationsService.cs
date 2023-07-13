@@ -7,15 +7,13 @@ namespace MySpot.Api.Services
 {
     public class ReservationsService
     {
+        private readonly List<WeeklyParkingSpot> _weeklyParkingSpots;
         private static readonly Clock _clock = new();
-        private static readonly List<WeeklyParkingSpot> _weeklyParkingSpots = new() 
+
+        public ReservationsService(List<WeeklyParkingSpot> weeklyParkingSpots)
         {
-            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000001")), new Week(_clock.Current().AddDays(7)),"P1"),
-            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000002")), new Week(_clock.Current().AddDays(7)),"P2"),
-            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000003")), new Week(_clock.Current().AddDays(7)),"P3"),
-            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000004")), new Week(_clock.Current().AddDays(7)),"P4"),
-            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000005")), new Week(_clock.Current().AddDays(7)),"P5"),
-        };
+            _weeklyParkingSpots = weeklyParkingSpots;
+        }
 
         public ReservationDto Get(Guid id)=> GetAllWeekly().SingleOrDefault(x => x.Id == id);
 

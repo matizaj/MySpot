@@ -2,6 +2,7 @@
 using MySpot.Api.Commands;
 using MySpot.Api.Entities;
 using MySpot.Api.Services;
+using MySpot.Api.ValueObjects;
 
 namespace MySpot.Api.Controllers
 {
@@ -9,8 +10,17 @@ namespace MySpot.Api.Controllers
     [Route("/api/[controller]")]
     public class ReservationsController: ControllerBase 
     {
+        private static Clock _clock = new();
         //controller cant hold any state, every request start from new state so static keyword need to be added
-        private readonly ReservationsService _service = new ReservationsService();
+        private static  readonly ReservationsService _service = new ReservationsService(new()
+        {
+            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000001")), new Week(_clock.Current()),"P1"),
+            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000002")), new Week(_clock.Current()),"P2"),
+            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000003")), new Week(_clock.Current()),"P3"),
+            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000004")), new Week(_clock.Current()),"P4"),
+            new WeeklyParkingSpot(new ParkingSpotId(Guid.Parse("00000000-0000-0000-0000-000000000005")), new Week(_clock.Current()),"P5"),
+        });
+        
 
         [HttpPost]
         public IActionResult Post(CreateReservation command)
