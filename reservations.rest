@@ -1,6 +1,6 @@
 @url = http://localhost:5000/api
-@id = 4e09c2b9-08b5-4954-bf41-157ab9aaa6df
-@parkingSpotId = 00000000-0000-0000-0000-000000000001
+@id = 6f01534e-187b-4e0d-9694-f8a467d98c7f
+@parkingSpotId = 00000000-0000-0000-0000-000000000002
 
 ###
 GET {{url}}
