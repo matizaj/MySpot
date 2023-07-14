@@ -34,7 +34,7 @@ namespace MySpot.Infrastructure.DAL.Repositories
 
         public IEnumerable<WeeklyParkingSpot> GetAll() => _weeklyParkingSpots;
 
-        public WeeklyParkingSpot GetById(Guid id) => _weeklyParkingSpots.SingleOrDefault(x => x.Id == id);
+        public WeeklyParkingSpot GetById(ParkingSpotId id) => _weeklyParkingSpots.SingleOrDefault(x => x.Id == id);
 
         public void Update(WeeklyParkingSpot weeklyParkingSpot)
         {

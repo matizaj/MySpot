@@ -58,7 +58,7 @@ namespace MySpot.Application.Services
                 return false;
             }
 
-            var existingReservation = weeklyParkingSpot.Reservations.SingleOrDefault(x => x.Id == command.ReservationId);
+            var existingReservation = weeklyParkingSpot.Reservations.SingleOrDefault(x => x.Id == new ReservationId(command.ReservationId));
             if (existingReservation == null)
             {
                 return false;
@@ -81,7 +81,7 @@ namespace MySpot.Application.Services
                 return false;
             }
 
-            var existingReservation = weeklyParkingSpot.Reservations.SingleOrDefault(x => x.Id == command.ReservationId);
+            var existingReservation = weeklyParkingSpot.Reservations.SingleOrDefault(x => x.Id == new ReservationId(command.ReservationId));
             if (existingReservation == null)
             {
                 return false;
@@ -91,7 +91,7 @@ namespace MySpot.Application.Services
             return true;
         }
 
-        private WeeklyParkingSpot GetWeeklyParkingSpotByReservation(Guid id)
+        private WeeklyParkingSpot GetWeeklyParkingSpotByReservation(ReservationId id)
         {
             return _weeklyParkingSpots.GetAll().SingleOrDefault(x => x.Reservations.Any(x => x.Id == id));
         }
