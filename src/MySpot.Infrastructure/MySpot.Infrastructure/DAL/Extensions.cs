@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MySpot.Core.Repositories;
+using MySpot.Infrastructure.DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +14,14 @@ namespace MySpot.Infrastructure.DAL
     {
         public static IServiceCollection AddPostgres(this IServiceCollection services)
         {
-            return services.AddDbContext<MySpotDbContext>(opt =>
+           services.AddDbContext<MySpotDbContext>(opt =>
             {
                 const string connectionString = "Host=localhost;Database=MySpot;Username=postgres;Password=";
                 opt.UseNpgsql(connectionString);
             });
+            services.AddScoped<IWeeklyParkingSpotRepository, PostresWeeklyParkingSpotRepository>();
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            return services;
         }
     }
 }

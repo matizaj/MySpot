@@ -9,7 +9,7 @@ namespace MySpot.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddSingleton<IWeeklyParkingSpotRepository, InMemoryWeeklyParkingSpot>();
+            //services.AddSingleton<IWeeklyParkingSpotRepository, InMemoryWeeklyParkingSpot>();
             services.AddPostgres();
             return services;
         }
