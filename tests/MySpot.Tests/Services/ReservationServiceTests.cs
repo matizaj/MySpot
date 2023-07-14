@@ -1,6 +1,6 @@
 ﻿using MySpot.Application.Commands;
 using MySpot.Core.Repositories;
-using MySpot.Infrastructure.Repositories;
+using MySpot.Infrastructure.DAL.Repositories;
 using MySpot.Application.Services;
 using MySpot.Tests.Shared;
 using Shouldly;

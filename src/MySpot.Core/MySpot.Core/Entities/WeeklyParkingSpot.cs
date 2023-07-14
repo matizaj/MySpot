@@ -14,7 +14,7 @@ namespace MySpot.Core.Entities
             Name = name;
         }
 
-        public Guid Id { get; }
+        public ParkingSpotId Id { get; }
         public Week Week { get; }
         public ParkingSpotName Name { get; set; }
         public IEnumerable<Reservation> Reservations => _reservations;
@@ -41,7 +41,7 @@ namespace MySpot.Core.Entities
             _reservations.Add(reservation);
         }
 
-        public void RemoveReservation(Guid id)
+        public void RemoveReservation(ReservationId id)
         {
             var reservation = _reservations.SingleOrDefault(x => x.Id == id);
             _reservations.Remove(reservation);

@@ -13,9 +13,9 @@ namespace MySpot.Core.Entities
             Date = date;            
         }
 
-        public Guid Id { get; }
-        public string EmployeeName { get; private set; }
-        public Guid ParkingSpotId { get; private set; }
+        public ReservationId Id { get; }
+        public EmployeeName EmployeeName { get; private set; }
+        public ParkingSpotId ParkingSpotId { get; private set; }
         public LicensePlate LicensePlate { get; private set; }
         public Date Date { get; private set; }
 

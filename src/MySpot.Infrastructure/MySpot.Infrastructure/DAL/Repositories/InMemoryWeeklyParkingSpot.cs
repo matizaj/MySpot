@@ -4,8 +4,8 @@ using MySpot.Core.ValueObjects;
 using MySpot.Core.Repositories;
 using System.Runtime.CompilerServices;
 
-[assembly:InternalsVisibleTo("MySpot.Tests")]
-namespace MySpot.Infrastructure.Repositories
+[assembly: InternalsVisibleTo("MySpot.Tests")]
+namespace MySpot.Infrastructure.DAL.Repositories
 {
     internal class InMemoryWeeklyParkingSpot : IWeeklyParkingSpotRepository
     {
@@ -34,7 +34,7 @@ namespace MySpot.Infrastructure.Repositories
 
         public IEnumerable<WeeklyParkingSpot> GetAll() => _weeklyParkingSpots;
 
-        public WeeklyParkingSpot GetById(Guid id) => _weeklyParkingSpots.SingleOrDefault(x=>x.Id == id);
+        public WeeklyParkingSpot GetById(Guid id) => _weeklyParkingSpots.SingleOrDefault(x => x.Id == id);
 
         public void Update(WeeklyParkingSpot weeklyParkingSpot)
         {
