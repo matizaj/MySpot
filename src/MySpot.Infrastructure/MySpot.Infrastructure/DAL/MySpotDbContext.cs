@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MySpot.Infrastructure.DAL
 {
-    public class MySpotDbContext : DbContext
+    internal class MySpotDbContext : DbContext
     {
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<WeeklyParkingSpot> WeeklyParkingSpots { get; set; }

@@ -5,6 +5,7 @@
 ###
 GET {{url}}
 
+
 ###
 GET {{url}}/reservations
 
@@ -19,7 +20,7 @@ Content-Type: application/json
    "ParkingSpotId":"{{parkingSpotId}}",
    "EmployeeName":"mateusz",
    "LicensePlate":"KR8EP3",
-   "Date":"2023-07-15"
+   "Date":"2023-07-18"
 }
 ###
 POST {{url}}/reservations
