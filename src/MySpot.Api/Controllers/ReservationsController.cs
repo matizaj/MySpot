@@ -19,10 +19,10 @@ namespace MySpot.Api.Controllers
 
 
         [HttpPost]
-        public IActionResult Post(CreateReservation command)
+        public async Task<IActionResult> Post(CreateReservation command)
         {
            var cmd = command with { ReservationId = Guid.NewGuid() };
-           var id = _service.Create(cmd);
+           var id = await _service.CreateAsync(cmd);
             if(id == null)
             {
                 return BadRequest();
@@ -31,12 +31,12 @@ namespace MySpot.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Reservation>> Get() => Ok(_service.GetAllWeekly());
+        public async Task<ActionResult<IEnumerable<Reservation>>> Get() => Ok(await _service.GetAllWeeklyAsync());
 
         [HttpGet("{id:guid}")]
-        public ActionResult<Reservation> Get(Guid id)
+        public async Task<ActionResult<Reservation>> Get(Guid id)
         {
-            var reservation = _service.Get(id);
+            var reservation = await _service.GetAsync(id);
             if(reservation == null)
             {
                 return NotFound();
@@ -46,9 +46,9 @@ namespace MySpot.Api.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        public ActionResult Put(Guid id, ChangeReservationLicensePlate command)
+        public async Task<ActionResult> Put(Guid id, ChangeReservationLicensePlate command)
         {
-            if(_service.Update(command with { ReservationId = id}))
+            if(await _service.UpdateAsync(command with { ReservationId = id}))
             {
                 return NoContent();
             }
@@ -57,9 +57,9 @@ namespace MySpot.Api.Controllers
         }
 
         [HttpDelete("{id:guid}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-           if (_service.Delete(new DeleteReservation(id)))
+           if (await _service.DeleteAsync(new DeleteReservation(id)))
            {
                 return NoContent();
            }

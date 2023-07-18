@@ -22,13 +22,13 @@ namespace MySpot.Tests.Services
         }
 
         [Fact]
-        public void given_reservation_for_valid_date_create_reservation_should_succeed()
+        public async Task  given_reservation_for_valid_date_create_reservation_should_succeed()
         {
-            var parkingSpot = _weeklyParkingSpots.GetAll().First();
+            var parkingSpot = (await _weeklyParkingSpots.GetAllAsync()).First();
             var command = new CreateReservation(parkingSpot.Id, 
-                Guid.NewGuid(), "John Doe", "XYZ123", DateTime.UtcNow.AddDays(1));
+                Guid.NewGuid(), "John Doe", "XYZ123", DateTime.UtcNow.AddDays(2));
 
-            var id = _reservationsService.Create(command);
+            var id = await _reservationsService.CreateAsync(command);
 
             id.ShouldNotBeNull();
             id.Value.ShouldBe(command.ReservationId);

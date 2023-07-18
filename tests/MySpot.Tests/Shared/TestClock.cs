@@ -6,7 +6,7 @@ namespace MySpot.Tests.Shared
     {
         public DateTime Current()
         {
-            return new DateTime(2023, 07, 13);
+            return new DateTime(2023, 07, 18);
         }
     }
 }

@@ -13,29 +13,29 @@ namespace MySpot.Infrastructure.DAL.Repositories
         {
             _ctx = ctx;
         }
-        public void Add(WeeklyParkingSpot weeklyParkingSpot)
+        public async Task AddAsync(WeeklyParkingSpot weeklyParkingSpot)
         {
-            _ctx.Add(weeklyParkingSpot);
-            _ctx.SaveChanges();
+            await _ctx.AddAsync(weeklyParkingSpot);
+            await _ctx.SaveChangesAsync();
         }
 
-        public void Delete(WeeklyParkingSpot weeklyParkingSpot)
+        public async Task DeleteAsync(WeeklyParkingSpot weeklyParkingSpot)
         {
             _ctx.Remove(weeklyParkingSpot);
-            _ctx.SaveChanges();
+            await _ctx.SaveChangesAsync();
         }
 
-        public IEnumerable<WeeklyParkingSpot> GetAll() => _ctx.WeeklyParkingSpots.Include(x=>x.Reservations).ToList();
+        public async Task<IEnumerable<WeeklyParkingSpot>> GetAllAsync() => await _ctx.WeeklyParkingSpots.Include(x=>x.Reservations).ToListAsync();
 
-        public WeeklyParkingSpot GetById(ParkingSpotId id) 
-            => _ctx.WeeklyParkingSpots
+        public async Task<WeeklyParkingSpot> GetByIdAsync(ParkingSpotId id) 
+            => await _ctx.WeeklyParkingSpots
             .Include(x => x.Reservations)
-            .SingleOrDefault(s => s.Id == id);
+            .SingleOrDefaultAsync(s => s.Id == id);
 
-        public void Update(WeeklyParkingSpot weeklyParkingSpot)
+        public async Task UpdateAsync(WeeklyParkingSpot weeklyParkingSpot)
         {
             _ctx.Update(weeklyParkingSpot);
-            _ctx.SaveChanges();
+            await _ctx.SaveChangesAsync();
         }
     }
 }

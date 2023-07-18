@@ -18,7 +18,6 @@ namespace MySpot.Infrastructure.DAL
 
             services.AddDbContext<MySpotDbContext>(opt =>
             {
-                const string connectionString = "Host=localhost;Database=MySpot;Username=postgres;Password=";
                 opt.UseNpgsql(options.ConnectionString);
             });
             services.AddScoped<IWeeklyParkingSpotRepository, PostresWeeklyParkingSpotRepository>();
