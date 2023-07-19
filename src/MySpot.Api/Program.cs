@@ -10,6 +10,6 @@ builder.Services
     .AddControllers();
 
 var app = builder.Build();
-app.MapControllers();
+app.UseInfrestructure();
 
 app.Run();
