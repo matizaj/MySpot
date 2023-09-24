@@ -1,8 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MySpot.Core.DomainServices;
+using MySpot.Core.Policies;
 using MySpot.Core.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +15,10 @@ namespace MySpot.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
+            services.AddSingleton<IReservationPolicy, RegularEmployeeReservationPolicy>();
+            services.AddSingleton<IReservationPolicy, ManagerReservationPolicy>();
+            services.AddSingleton<IReservationPolicy, BossReservationPolicy>();
+            services.AddSingleton<IParkingReservationService, ParkingReservationService>();
             return services;
         }
     }

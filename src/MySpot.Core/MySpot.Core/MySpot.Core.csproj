@@ -9,12 +9,6 @@
     <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ValueObjects\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>

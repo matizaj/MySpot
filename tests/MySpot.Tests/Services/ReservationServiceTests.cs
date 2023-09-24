@@ -5,6 +5,7 @@ using MySpot.Application.Services;
 using MySpot.Tests.Shared;
 using Shouldly;
 using Xunit;
+using MySpot.Core.Abstractions;
 
 namespace MySpot.Tests.Services
 {

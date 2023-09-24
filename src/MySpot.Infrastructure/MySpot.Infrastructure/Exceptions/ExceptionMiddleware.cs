@@ -1,7 +1,6 @@
 ﻿using Humanizer;
 using Microsoft.AspNetCore.Http;
 using MySpot.Core.Exceptions;
-using System.Text.Json;
 
 namespace MySpot.Infrastructure.Exceptions
 {

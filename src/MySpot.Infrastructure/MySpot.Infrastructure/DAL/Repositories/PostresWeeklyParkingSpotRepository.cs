@@ -37,5 +37,13 @@ namespace MySpot.Infrastructure.DAL.Repositories
             _ctx.Update(weeklyParkingSpot);
             await _ctx.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<WeeklyParkingSpot>> GetByWeekAsync(Week week)
+        {
+            return await _ctx.WeeklyParkingSpots
+            .Include(x => x.Reservations)
+            .Where(x =>x.Week == week).ToListAsync();
+
+        }
     }
 }
