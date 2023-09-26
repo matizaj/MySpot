@@ -11,6 +11,8 @@ namespace MySpot.Core.DomainServices
     public interface IParkingReservationService
     {
         void ReserveSpotForVehicle(IEnumerable<WeeklyParkingSpot> allParkingSpot, JobTitle jobTitle, 
-            WeeklyParkingSpot parkingSpotToReserve, Reservation reservation);
+            WeeklyParkingSpot parkingSpotToReserve, VehicleReservation reservation);
+
+        void ReserveParkingForCleaning(IEnumerable<WeeklyParkingSpot> allParkingSpot, Date date);
     }
 }

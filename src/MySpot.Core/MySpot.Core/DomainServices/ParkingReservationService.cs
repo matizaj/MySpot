@@ -16,10 +16,26 @@ namespace MySpot.Core.DomainServices
             _policies = policies;
             _clock = clock;
         }
+
+        public void ReserveParkingForCleaning(IEnumerable<WeeklyParkingSpot> allParkingSpot, Date date)
+        {
+            foreach (var parkingSpot in allParkingSpot) 
+            {
+                var reservationForTheSameDate = parkingSpot.Reservations.Where(x =>x.Date == date).ToList();
+                parkingSpot.RemoveReservations(reservationForTheSameDate);
+
+                var cleaningReservation = new CleaningReservation(ReservationId.Create(), parkingSpot.Id, date);
+
+                parkingSpot.AddReservation(cleaningReservation, new Date(_clock.Current()));
+            }
+
+            
+        }
+
         public void ReserveSpotForVehicle(IEnumerable<WeeklyParkingSpot> allParkingSpot, 
             JobTitle jobTitle, 
             WeeklyParkingSpot parkingSpotToReserve, 
-            Reservation reservation)
+            VehicleReservation reservation)
         {
             var parkingSpotId = parkingSpotToReserve.Id;
             var policy = _policies.SingleOrDefault(x => x.CanBeApplied(jobTitle));

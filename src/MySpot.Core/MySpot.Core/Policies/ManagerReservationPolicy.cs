@@ -16,6 +16,7 @@ namespace MySpot.Core.Policies
         public bool CanReserve(IEnumerable<WeeklyParkingSpot> weeklyParkingSpots, EmployeeName employeeName)
         {
             var totalEmployeesReservation = weeklyParkingSpots.SelectMany(x => x.Reservations)
+                .OfType<VehicleReservation>()
                 .Count(x => x.EmployeeName == employeeName);
             return totalEmployeesReservation <= 4;
         }

@@ -48,7 +48,7 @@ namespace MySpot.Api.Controllers
         [HttpPut("{id:guid}")]
         public async Task<ActionResult> Put(Guid id, ChangeReservationLicensePlate command)
         {
-            if(await _service.UpdateAsync(command with { ReservationId = id}))
+            if(await _service.ChangeReservationLicensePlateAsync(command with { ReservationId = id}))
             {
                 return NoContent();
             }
