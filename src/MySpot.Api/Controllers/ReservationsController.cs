@@ -18,16 +18,23 @@ namespace MySpot.Api.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> Post(CreateReservation command)
+        [HttpPost("vehicle")]
+        public async Task<IActionResult> Post(ReserveParkingSpotForVehicle command)
         {
            var cmd = command with { ReservationId = Guid.NewGuid() };
-           var id = await _service.CreateAsync(cmd);
+           var id = await _service.ReserveForVehicleAsync(cmd);
             if(id == null)
             {
                 return BadRequest();
             }
            return CreatedAtAction(nameof(Get), new {id = cmd.ReservationId}, cmd);
+        }
+
+        [HttpPost("cleaning")]
+        public async Task<IActionResult> Post(ReserveParkingSpotForCleaning command)
+        {
+            await _service.ReserveForCleaningAsync(command);
+            return Ok();
         }
 
         [HttpGet]

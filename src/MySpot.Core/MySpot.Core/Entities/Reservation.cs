@@ -4,6 +4,7 @@ namespace MySpot.Core.Entities
 {
     public abstract class Reservation
     {
+        protected Reservation() { }
         public Reservation(ReservationId id, ParkingSpotId parkingSpotId, Date date)
         {
             Id = id;

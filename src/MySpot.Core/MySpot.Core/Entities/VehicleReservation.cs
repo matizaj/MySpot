@@ -12,6 +12,9 @@ namespace MySpot.Core.Entities
         public EmployeeName EmployeeName { get; private set; }
         public LicensePlate LicensePlate { get; private set; }
 
+        private VehicleReservation()
+        {            
+        }
         public VehicleReservation(ReservationId id, 
                 ParkingSpotId parkingSpotId,                
                 EmployeeName employeeName,
