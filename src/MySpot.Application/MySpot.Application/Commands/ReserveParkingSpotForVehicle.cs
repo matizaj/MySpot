@@ -1,5 +1,5 @@
-﻿using MySpot.Core.ValueObjects;
-using System;
+﻿using MySpot.Application.Abstractions;
+
 namespace MySpot.Application.Commands
 {
 	// record behind is a normal class but props has {get; set init;}
@@ -9,6 +9,6 @@ namespace MySpot.Application.Commands
 		string EmployeeName,
 		string LicensePlate,
 		DateTime Date,
-		int Capacity);
+		int Capacity): ICommand;
 }
 

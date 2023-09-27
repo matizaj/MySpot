@@ -44,27 +44,7 @@ namespace MySpot.Application.Services
         }
         public async Task<Guid?> ReserveForVehicleAsync(ReserveParkingSpotForVehicle command)
         {
-            var parkingSpotId = new ParkingSpotId(command.ParkingSpotId);
-            var week = new Week(_clock.Current());
-            var weeklyParkingSpots = await _weeklyParkingSpots.GetByWeekAsync(week);
-            var parkingSpotToReserve = weeklyParkingSpots.SingleOrDefault(x => x.Id == parkingSpotId);
-            if (parkingSpotToReserve == null)
-            {
-                return default;
-            }
-
-            var reservation = new VehicleReservation(
-                command.ReservationId,
-                command.ParkingSpotId,
-                command.EmployeeName,
-                command.LicensePlate,
-                new Date(command.Date),
-                command.Capacity);
-
-           _parkingReservationService.ReserveSpotForVehicle(weeklyParkingSpots, JobTitle.Employee, parkingSpotToReserve, reservation);
-            await _weeklyParkingSpots.UpdateAsync(parkingSpotToReserve);
-
-            return reservation.Id;
+            
         }
 
         public async Task<bool> ChangeReservationLicensePlateAsync(ChangeReservationLicensePlate command)
