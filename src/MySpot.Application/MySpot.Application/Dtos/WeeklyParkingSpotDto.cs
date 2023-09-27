@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MySpot.Application.Dtos
 {
-    internal class WeeklyParkingSpotDto
+    public class WeeklyParkingSpotDto
     {
         public string Id { get; set; }
         public string Name { get; set; }

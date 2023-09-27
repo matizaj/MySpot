@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MySpot.Application.Queries
 {
-    internal class GetWeeklyParkingSpots : IQuery<IEnumerable<WeeklyParkingSpotDto>>
+    public class GetWeeklyParkingSpots : IQuery<IEnumerable<WeeklyParkingSpotDto>>
     {
         public DateTime? Date { get; set; }
         public int PageNumber { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MySpot.Application.Abstractions
 {
-    internal interface IQuery<T>
+    public interface IQuery<T>
     {
     }
 }

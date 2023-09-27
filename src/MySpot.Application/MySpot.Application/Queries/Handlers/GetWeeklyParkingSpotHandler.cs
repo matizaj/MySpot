@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MySpot.Application.Queries.Handlers
 {
-    internal class GetWeeklyParkingSpotHandler : IQueryHandler<GetWeeklyParkingSpots, IEnumerable<WeeklyParkingSpotDto>>
+    public class GetWeeklyParkingSpotHandler : IQueryHandler<GetWeeklyParkingSpots, IEnumerable<WeeklyParkingSpotDto>>
     {
         public Task<IEnumerable<WeeklyParkingSpotDto>> HandleAsync(GetWeeklyParkingSpots query)
         {
