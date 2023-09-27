@@ -18,6 +18,7 @@ namespace MySpot.Infrastructure.DAL.Configurations
             builder.Property(x => x.Id).HasConversion(x => x.Value, x => new ParkingSpotId(x));
             builder.Property(x => x.Name).HasConversion(x => x.Value, x => new ParkingSpotName(x));
             builder.Property(x => x.Week).HasConversion(x => x.To.Value, x => new Week(x));
+            builder.Property(x => x.Capacity).HasConversion(x => x.Value, x => new Capacity(x));
         }
     }
 }

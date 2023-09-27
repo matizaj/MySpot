@@ -58,7 +58,8 @@ namespace MySpot.Application.Services
                 command.ParkingSpotId,
                 command.EmployeeName,
                 command.LicensePlate,
-                new Date(command.Date));
+                new Date(command.Date),
+                command.Capacity);
 
            _parkingReservationService.ReserveSpotForVehicle(weeklyParkingSpots, JobTitle.Employee, parkingSpotToReserve, reservation);
             await _weeklyParkingSpots.UpdateAsync(parkingSpotToReserve);

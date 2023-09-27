@@ -19,7 +19,8 @@ namespace MySpot.Core.Entities
                 ParkingSpotId parkingSpotId,                
                 EmployeeName employeeName,
                 LicensePlate licensePlate,
-                Date date) : base(id, parkingSpotId, date)
+                Date date,
+                Capacity capacity) : base(id, parkingSpotId, date, capacity)
         {
             EmployeeName = employeeName;
             ChangeLicensePlate(licensePlate);
