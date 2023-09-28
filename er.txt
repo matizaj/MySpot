@@ -1,0 +1,9 @@
+System.AggregateException: 'Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: MySpot.Application.Abstractions.ICommandHandler`1[MySpot.Application.Commands.ReserveParkingSpotForCleaning] Lifetime: Scoped ImplementationType: MySpot.Application.Commands.Handlers.ReserveParkingSpotForCleaningHandler': Unable to activate type 'MySpot.Application.Commands.Handlers.ReserveParkingSpotForCleaningHandler'. The following constructors are ambiguous:
+Void .ctor(MySpot.Core.DomainServices.IParkingReservationService)
+Void .ctor(MySpot.Core.Repositories.IWeeklyParkingSpotRepository)) (Error while validating the service descriptor 'ServiceType: MySpot.Application.Abstractions.ICommandHandler`1[MySpot.Application.Commands.ChangeReservationLicensePlate] Lifetime: Scoped ImplementationType: MySpot.Application.Commands.Handlers.ChangeReservationLicensePlateHandler': Unable to activate type 'MySpot.Application.Commands.Handlers.ChangeReservationLicensePlateHandler'. The following constructors are ambiguous:
+Void .ctor(MySpot.Core.Abstractions.IClock)
+Void .ctor(MySpot.Core.Repositories.IWeeklyParkingSpotRepository))'
+
+InvalidOperationException: Unable to activate type 'MySpot.Application.Commands.Handlers.ReserveParkingSpotForCleaningHandler'. The following constructors are ambiguous:
+Void .ctor(MySpot.Core.DomainServices.IParkingReservationService)
+Void .ctor(MySpot.Core.Repositories.IWeeklyParkingSpotRepository)

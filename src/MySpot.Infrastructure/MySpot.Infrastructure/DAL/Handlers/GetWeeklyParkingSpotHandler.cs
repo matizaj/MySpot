@@ -1,6 +1,8 @@
-﻿using MySpot.Application.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using MySpot.Application.Abstractions;
 using MySpot.Application.Dtos;
 using MySpot.Application.Queries;
+using MySpot.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,23 @@ namespace MySpot.Infrastructure.DAL.Handlers
 {
     internal class GetWeeklyParkingSpotHandler : IQueryHandler<GetWeeklyParkingSpots, IEnumerable<WeeklyParkingSpotDto>>
     {
-        public Task<IEnumerable<WeeklyParkingSpotDto>> HandleAsync(GetWeeklyParkingSpots query)
+        private readonly MySpotDbContext _context;
+
+        public GetWeeklyParkingSpotHandler(MySpotDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<IEnumerable<WeeklyParkingSpotDto>> HandleAsync(GetWeeklyParkingSpots query)
+        {
+            var week = query.Date.HasValue ? new Week(query.Date.Value) : null;
+            var weeklyParkingSpots = await _context.WeeklyParkingSpots
+                .Where(x => week == null || x.Week == week)
+                .Include(x =>x.Reservations)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return weeklyParkingSpots.Select(x => x.AsDto());
         }
     }
 }

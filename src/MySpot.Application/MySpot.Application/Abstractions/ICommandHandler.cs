@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MySpot.Application.Abstractions
 {
-    internal interface ICommandHandler<in TCommand> where TCommand : class, ICommand
+    public interface ICommandHandler<in TCommand> where TCommand : class, ICommand
     {
         Task HandleAsync(TCommand command);
     }

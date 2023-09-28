@@ -1,6 +1,7 @@
-﻿using System;
+﻿using MySpot.Application.Abstractions;
+using System;
 namespace MySpot.Application.Commands
 {
-	public record DeleteReservation(Guid ReservationId);
+	public record DeleteReservation(Guid ReservationId): ICommand;
 }
 

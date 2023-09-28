@@ -1,13 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MySpot.Core.DomainServices;
 using MySpot.Core.Policies;
-using MySpot.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MySpot.Core
 {
