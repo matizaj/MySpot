@@ -26,13 +26,11 @@ namespace MySpot.Application.Commands.Handlers
         public async Task HandleAsync(ReserveParkingSpotForCleaning command)
         {
             var week = new Week(command.Date);
-            var weeklyPArkingSpots = (await _weeklyParkingSpots.GetByWeekAsync(week)).ToList();
-            _parkingReservationService.ReserveParkingForCleaning(weeklyPArkingSpots, new Date(command.Date));
+            var weeklyParkingSpots = (await _weeklyParkingSpots.GetByWeekAsync(week)).ToList();
+            _parkingReservationService.ReserveParkingForCleaning(weeklyParkingSpots, new Date(command.Date));
 
-            foreach (var parkingSpot in weeklyPArkingSpots)
-            {
-                await _weeklyParkingSpots.UpdateAsync(parkingSpot);
-            }
+            var tasks = weeklyParkingSpots.Select(x => _weeklyParkingSpots.UpdateAsync(x)).ToList();
+            await Task.WhenAll(tasks);
         }
     }
 }

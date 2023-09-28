@@ -16,7 +16,6 @@ namespace MySpot.Infrastructure.DAL.Repositories
         public async Task AddAsync(WeeklyParkingSpot weeklyParkingSpot)
         {
             await _ctx.AddAsync(weeklyParkingSpot);
-            await _ctx.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(WeeklyParkingSpot weeklyParkingSpot)
@@ -32,10 +31,9 @@ namespace MySpot.Infrastructure.DAL.Repositories
             .Include(x => x.Reservations)
             .SingleOrDefaultAsync(s => s.Id == id);
 
-        public async Task UpdateAsync(WeeklyParkingSpot weeklyParkingSpot)
+        public Task UpdateAsync(WeeklyParkingSpot weeklyParkingSpot)
         {
-            _ctx.Update(weeklyParkingSpot);
-            await _ctx.SaveChangesAsync();
+            return Task.FromResult(_ctx.Update(weeklyParkingSpot));
         }
 
         public async Task<IEnumerable<WeeklyParkingSpot>> GetByWeekAsync(Week week)
