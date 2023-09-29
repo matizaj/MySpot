@@ -20,7 +20,7 @@ Content-Type: application/json
    "ParkingSpotId":"{{parkingSpotId}}",
    "EmployeeName":"mateusz3",
    "LicensePlate":"XXYY1234",
-   "Date":"2023-09-30",
+   "Date":"2023-08-30",
    "capacity":1
 }
 ###
@@ -28,7 +28,7 @@ POST {{url}}/parkingspots/reservations/cleaning
 Content-Type: application/json
 
 {
-   "Date":"2023-09-30"
+   "Date":"2023-09-11"
 }
 
 ###

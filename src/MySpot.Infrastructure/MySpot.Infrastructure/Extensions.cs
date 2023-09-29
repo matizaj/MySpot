@@ -11,6 +11,7 @@ using MySpot.Core.Repositories;
 using MySpot.Infrastructure.DAL;
 using MySpot.Infrastructure.DAL.Repositories;
 using MySpot.Infrastructure.Exceptions;
+using MySpot.Infrastructure.Logging;
 
 namespace MySpot.Infrastructure
 {
@@ -23,6 +24,7 @@ namespace MySpot.Infrastructure
             services.Configure<AppOptions>(section);
             services.AddPostgres(configuration);
             services.AddSingleton<ExceptionMiddleware>();
+            services.AddCustomLogger();
 
             var infraAssembly = typeof(AppOptions).Assembly;
             services.Scan(s => s.FromAssemblies(infraAssembly)
