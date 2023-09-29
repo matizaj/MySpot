@@ -2,16 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySpot.Application.Abstractions;
-using MySpot.Application.Dtos;
-using MySpot.Application.Queries;
-using MySpot.Application.Queries.Handlers;
-using MySpot.Application.Services;
-using MySpot.Core.Abstractions;
-using MySpot.Core.Repositories;
 using MySpot.Infrastructure.DAL;
-using MySpot.Infrastructure.DAL.Repositories;
 using MySpot.Infrastructure.Exceptions;
 using MySpot.Infrastructure.Logging;
+using MySpot.Infrastructure.Security;
 
 namespace MySpot.Infrastructure
 {
@@ -25,6 +19,7 @@ namespace MySpot.Infrastructure
             services.AddPostgres(configuration);
             services.AddSingleton<ExceptionMiddleware>();
             services.AddCustomLogger();
+            services.AddSecurity();
 
             var infraAssembly = typeof(AppOptions).Assembly;
             services.Scan(s => s.FromAssemblies(infraAssembly)

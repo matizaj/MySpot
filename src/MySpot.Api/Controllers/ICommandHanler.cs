@@ -1,6 +1,6 @@
 ﻿namespace MySpot.Api.Controllers
 {
-    public interface ICommandHanler<T>
+    public interface ICommandHandler<T>
     {
     }
 }

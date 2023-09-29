@@ -51,3 +51,15 @@ Content-Type: application/json
 
 ###
 DELETE   {{url}}/reservations/{{id}}
+
+###
+POST {{url}}/users
+Content-Type: application/json
+
+{
+   "email":"test@tewst.pl",
+   "username":"test",
+   "fullname":"test test",
+   "role":"role1",
+   "password":"test"
+}

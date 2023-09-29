@@ -10,16 +10,16 @@ namespace MySpot.Api.Controllers
     [Route("api/[controller]")]
     public class ParkingSpotsController : ControllerBase
     {
-        private readonly ICommandHandler<ReserveParkingSpotForVehicle> _reservaParkingSpotForVehicleHandler;
-        private readonly ICommandHandler<ReserveParkingSpotForCleaning> _reserveParkingSpotFroCleaningHandler;
-        private readonly ICommandHandler<DeleteReservation> _deleteReservationHandler;
-        private readonly ICommandHandler<ChangeReservationLicensePlate> _changeLicensePlateHandler;
+        private readonly Application.Abstractions.ICommandHandler<ReserveParkingSpotForVehicle> _reservaParkingSpotForVehicleHandler;
+        private readonly Application.Abstractions.ICommandHandler<ReserveParkingSpotForCleaning> _reserveParkingSpotFroCleaningHandler;
+        private readonly Application.Abstractions.ICommandHandler<DeleteReservation> _deleteReservationHandler;
+        private readonly Application.Abstractions.ICommandHandler<ChangeReservationLicensePlate> _changeLicensePlateHandler;
         private readonly IQueryHandler<GetWeeklyParkingSpots, IEnumerable<WeeklyParkingSpotDto>> _getWeeklyParkingSpots;
 
-        public ParkingSpotsController(ICommandHandler<ReserveParkingSpotForVehicle> reservaParkingSpotForVehicleHandler,
-            ICommandHandler<ReserveParkingSpotForCleaning> reserveParkingSpotFroCleaningHandler,
-            ICommandHandler<DeleteReservation> deleteReservationHandler,
-            ICommandHandler<ChangeReservationLicensePlate> changeLicensePlateHandler,
+        public ParkingSpotsController(Application.Abstractions.ICommandHandler<ReserveParkingSpotForVehicle> reservaParkingSpotForVehicleHandler,
+            Application.Abstractions.ICommandHandler<ReserveParkingSpotForCleaning> reserveParkingSpotFroCleaningHandler,
+            Application.Abstractions.ICommandHandler<DeleteReservation> deleteReservationHandler,
+            Application.Abstractions.ICommandHandler<ChangeReservationLicensePlate> changeLicensePlateHandler,
             IQueryHandler<GetWeeklyParkingSpots, IEnumerable<WeeklyParkingSpotDto>> getWeeklyParkingSpots)
         {
             _reservaParkingSpotForVehicleHandler = reservaParkingSpotForVehicleHandler;
