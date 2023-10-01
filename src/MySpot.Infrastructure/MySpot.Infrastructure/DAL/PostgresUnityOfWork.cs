@@ -18,8 +18,9 @@
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.InnerException);
                 await transaction.RollbackAsync();
                 throw;
             }

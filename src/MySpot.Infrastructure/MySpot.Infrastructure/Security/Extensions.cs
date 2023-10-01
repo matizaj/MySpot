@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using MySpot.Application.Dtos;
 using MySpot.Application.Security;
 using MySpot.Core.Entities;
 using System;

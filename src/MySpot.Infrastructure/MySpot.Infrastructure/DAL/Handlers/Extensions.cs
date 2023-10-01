@@ -29,5 +29,17 @@ namespace MySpot.Infrastructure.DAL.Handlers
                 })
             };
         }
+
+        public static UserDto AsDto(this User entity)
+        {
+            var dto = new UserDto()
+            {
+                Id = entity.Id,
+                FullName = entity.FullName,
+                UserName = entity.UserName,
+                Role = entity.Role
+            };
+            return dto;
+        }
     }
 }

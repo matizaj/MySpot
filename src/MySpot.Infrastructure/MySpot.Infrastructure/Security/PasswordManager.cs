@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using MySpot.Application.Dtos;
 using MySpot.Application.Security;
 using MySpot.Core.Entities;
 using System;
