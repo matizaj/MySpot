@@ -18,10 +18,17 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />   
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />   
     <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\MySpot.Application\MySpot.Application\MySpot.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Auth\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Auth\" />
+  </ItemGroup>
 </Project>
