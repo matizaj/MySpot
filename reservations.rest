@@ -63,3 +63,28 @@ Content-Type: application/json
    "role":"role1",
    "password":"test"
 }
+
+###
+# @name sign_in
+POST {{url}}/users/sign-in
+Content-Type: application/json
+
+{
+   "email":"test@tewst.pl",
+   "password":"test"
+}
+
+###
+GET {{url}}/users/dc60edd4-8a5a-45eb-b4c3-5088cce9b89d
+
+###
+GET {{url}}/users/test@tewst.pl
+
+###
+GET {{url}}/users/jwt
+
+@token = {{sign_in.response.body.$.accessToken}}
+###
+GET {{url}}/users/me
+Content-Type: application/json
+Authorization: Bearer {{token}}

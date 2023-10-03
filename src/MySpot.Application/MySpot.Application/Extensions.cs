@@ -2,6 +2,7 @@
 using MySpot.Application.Abstractions;
 using MySpot.Application.Commands;
 using MySpot.Application.Commands.Handlers;
+using MySpot.Application.Security;
 using MySpot.Application.Services;
 using MySpot.Core.Abstractions;
 using MySpot.Core.DomainServices;

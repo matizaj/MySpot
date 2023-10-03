@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySpot.Core.ValueObjects;
 
 namespace MySpot.Core.Entities
 {
-    public class UserDto
+    public class User
     {
-        public Guid Id { get; set; }
-        public string Email { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string FullName { get; set; }
-        public string Role { get; set; }
+        public UserId Id { get; private set; }
+        public Email Email { get; private set; }
+        public UserName UserName { get; private set; }
+        public Password Password { get; private set; }
+        public FullName FullName { get; private set; }
+        public Role Role { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
-        public UserDto(Guid id, string email, string userName, string password, string fullName, string role, DateTime createdAt)
+        public User(UserId id, Email email, UserName userName, Password password, FullName fullName, Role role, DateTime createdAt)
         {
             Id = id;
             Email = email;

@@ -17,8 +17,5 @@ namespace MySpot.Core.Entities
         public ParkingSpotId ParkingSpotId { get; private set; }       
         public Date Date { get; private set; }
         public Capacity Capacity { get; private set; }
-
-
-
     }
 }
