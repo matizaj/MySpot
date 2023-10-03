@@ -32,6 +32,8 @@ namespace MySpot.Infrastructure.Auth
 					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SigninKey))
 				};
 			});
+			services.AddAuthorization();
+			services.AddScoped<ITokenStorage, HttpContextTokenStorage>();
 			return services;
 		}
 	}

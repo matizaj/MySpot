@@ -38,6 +38,7 @@ namespace MySpot.Infrastructure
         {
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.MapControllers();
             return app;
         }
