@@ -11,6 +11,10 @@ namespace MySpot.Tests.Integration.Controllers
 {
     public class HomeControllerTests : ControllerTestsBase
     {
+        public HomeControllerTests(OptionsProvider optionsProvider) : base(optionsProvider)
+        {
+        }
+
         [Fact]
         public async Task get_200_ok_when_hit_base_endpoint()
         {

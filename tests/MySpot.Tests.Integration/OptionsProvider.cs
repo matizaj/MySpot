@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MySpot.Tests.Integration
 {
-    internal class OptionsProvider
+    public class OptionsProvider
     {
         private readonly IConfiguration _configuration;
 
-        public OptionsProvider(IConfiguration configuration)
+        public OptionsProvider()
         {
             _configuration = GetConfiguration();
         }

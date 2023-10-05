@@ -34,4 +34,7 @@
   <ItemGroup>
     <Folder Include="Auth\" />
   </ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="MySpot.Tests.Integration"/>
+	</ItemGroup>
 </Project>
