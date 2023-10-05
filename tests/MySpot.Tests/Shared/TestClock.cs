@@ -8,5 +8,6 @@ namespace MySpot.Tests.Shared
         {
             return new DateTime(2023, 9, 26, 12, 0, 0);
         }
+
     }
 }
