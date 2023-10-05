@@ -56,12 +56,19 @@ DELETE   {{url}}/reservations/{{id}}
 POST {{url}}/users
 Content-Type: application/json
 
+# {
+#    "email":"test@test.com",
+#    "username":"test",
+#    "fullname":"test test",
+#    "role":"role1",
+#    "password":"test"
+# }
 {
-   "email":"test@tewst.pl",
-   "username":"test",
-   "fullname":"test test",
-   "role":"role1",
-   "password":"test"
+   "email":"admin@test.com",
+   "username":"admin",
+   "fullname":"admin test",
+   "role":"admin",
+   "password":"admin"
 }
 
 ###
@@ -70,15 +77,17 @@ POST {{url}}/users/sign-in
 Content-Type: application/json
 
 {
-   "email":"test@tewst.pl",
-   "password":"test"
+   "email":"admin@test.com",
+   "password":"admin"
 }
 
 ###
-GET {{url}}/users/dc60edd4-8a5a-45eb-b4c3-5088cce9b89d
+GET {{url}}/users/bd1c5cdc-45fe-41cc-93ce-fa2051215923
+Authorization: Bearer {{token}}
 
 ###
-GET {{url}}/users/test@tewst.pl
+GET {{url}}/users/test@test.com
+Authorization: Bearer {{token}}
 
 ###
 GET {{url}}/users/jwt

@@ -49,6 +49,7 @@ namespace MySpot.Api.Controllers
         }
 
         [HttpGet("{id:guid}")]
+        [Authorize(Policy ="is-admin")]
         public async Task<ActionResult> GetUser(Guid id)
         {
             return Ok(await _userQuery.HandleAsync(new GetUser() { Id=id}));

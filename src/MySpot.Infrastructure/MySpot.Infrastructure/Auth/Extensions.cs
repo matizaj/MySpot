@@ -32,7 +32,13 @@ namespace MySpot.Infrastructure.Auth
 					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SigninKey))
 				};
 			});
-			services.AddAuthorization();
+			services.AddAuthorization(auth =>
+			{
+				auth.AddPolicy("is-admin", policy =>
+				{
+					policy.RequireRole("admin");
+				});
+			});
 			services.AddScoped<ITokenStorage, HttpContextTokenStorage>();
 			return services;
 		}
