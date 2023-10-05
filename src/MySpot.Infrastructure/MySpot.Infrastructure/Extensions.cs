@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using MySpot.Application.Abstractions;
 using MySpot.Infrastructure.Auth;
 using MySpot.Infrastructure.DAL;
@@ -22,6 +23,16 @@ namespace MySpot.Infrastructure
             services.AddCustomLogger();
             services.AddSecurity();
             services.AddAuth(configuration);
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen(x =>
+            {
+                x.EnableAnnotations();
+                x.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "MySpot API",
+                    Version = "v1",
+                });
+            });
 
             var infraAssembly = typeof(AppOptions).Assembly;
             services.Scan(s => s.FromAssemblies(infraAssembly)
@@ -37,6 +48,12 @@ namespace MySpot.Infrastructure
         public static WebApplication UseInfrestructure(this WebApplication app)
         {
             app.UseMiddleware<ExceptionMiddleware>();
+            app.UseSwagger();
+            app.UseReDoc(spec =>
+            {
+                spec.RoutePrefix = "docs";
+                spec.SpecUrl("/swagger/v1/swagger.json");
+            });
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();

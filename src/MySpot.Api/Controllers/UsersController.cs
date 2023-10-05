@@ -50,6 +50,10 @@ namespace MySpot.Api.Controllers
 
         [HttpGet("{id:guid}")]
         [Authorize(Policy ="is-admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetUser(Guid id)
         {
             return Ok(await _userQuery.HandleAsync(new GetUser() { Id=id}));
