@@ -18,7 +18,6 @@ namespace MySpot.Infrastructure.DAL.Repositories
         public async Task CreateUser(User user)
         {
             await _ctx.AddAsync(user);
-            await _ctx.SaveChangesAsync();
         }
 
         public async Task<User> GetUserByEmail(Email email)

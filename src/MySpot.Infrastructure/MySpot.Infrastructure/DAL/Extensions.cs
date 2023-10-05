@@ -30,17 +30,6 @@ namespace MySpot.Infrastructure.DAL
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             services.AddHostedService<DatabaseInitializer>();
             return services;
-        }
-
-        public static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : class, new()
-        {
-            var option = new T();
-            var section = configuration.GetSection(sectionName);
-            section.Bind(option);
-
-            return option;
-
-
-        }
+        }       
     }
 }

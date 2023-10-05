@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace MySpot.Tests.Integration
 {
@@ -9,6 +10,7 @@ namespace MySpot.Tests.Integration
         {
             Client = base.WithWebHostBuilder(builder =>
             {
+                builder.UseEnvironment("test");
             }).CreateClient();
         }
     }
