@@ -5,6 +5,9 @@
 ###
 GET {{url}}
 
+###
+GET http://localhost:5000
+
 
 ###
 GET {{url}}/parkingspots
@@ -56,19 +59,32 @@ DELETE   {{url}}/reservations/{{id}}
 POST {{url}}/users
 Content-Type: application/json
 
-# {
-#    "email":"test@test.com",
-#    "username":"test",
-#    "fullname":"test test",
-#    "role":"role1",
-#    "password":"test"
-# }
 {
+   "email":"test@test.com",
+   "username":"test",
+   "fullname":"test test",
+   "role":"role1",
+   "password":"test"
+}
+/*{
    "email":"admin@test.com",
    "username":"admin",
    "fullname":"admin test",
    "role":"admin",
    "password":"admin"
+}*/
+
+
+###
+POST {{url}}/v2/users
+Content-Type: application/json
+
+{
+   "email":"test@test.com",
+   "username":"test",
+   "fullname":"test test",
+   "role":"role1",
+   "password":"test"
 }
 
 ###
@@ -95,5 +111,9 @@ GET {{url}}/users/jwt
 @token = {{sign_in.response.body.$.accessToken}}
 ###
 GET {{url}}/users/me
+Content-Type: application/json
+Authorization: Bearer {{token}}
+###
+GET {{url}}/v2/users/me
 Content-Type: application/json
 Authorization: Bearer {{token}}
